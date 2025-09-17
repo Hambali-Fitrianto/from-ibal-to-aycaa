@@ -11,7 +11,7 @@
       position: fixed;
       top: -2rem;
       font-size: 1.5rem;
-      color: red; /* warna love merah */
+      color: #38bdf8; /* biru */
       animation: fall linear forwards;
       z-index: 10;
       opacity: 0.8;
@@ -53,7 +53,7 @@
     </div>
 
     <p class="text-xl text-gray-700 font-medium italic animate-pulse">
-      Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙❤️
+      Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙
     </p>
   </div>
 
@@ -97,11 +97,11 @@
     updateLoveCounter();
     setInterval(updateLoveCounter, 1000 * 60 * 60); // update tiap jam
 
-    // === Animasi hearts jatuh (warna merah) ===
+    // === Animasi hearts jatuh ===
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
-      heart.innerHTML = "❤️";
+      heart.innerHTML = "💙";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = 3 + Math.random() * 5 + "s";
       document.body.appendChild(heart);
