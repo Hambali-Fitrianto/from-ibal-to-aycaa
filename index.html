@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dari Ibal untuk Aycaa 💖</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-200 to-red-100 min-h-screen flex items-center justify-center">
+  <div class="text-center max-w-2xl p-6 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl">
+    <h1 class="text-4xl font-bold text-rose-600 mb-4">💌 Dari Ibal untuk Aycaa 💌</h1>
+    <p class="text-lg text-gray-700 mb-6">
+      Aku ingin selalu menghitung setiap detik bersamamu, sejak kita jadian 💕 <br>
+      <span class="font-semibold text-rose-500">28 April 2025</span> sampai hari ini.
+    </p>
+
+    <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="p-4 bg-rose-100 rounded-xl shadow">
+        <p class="text-2xl font-bold text-rose-600" id="years">0</p>
+        <p class="text-gray-600">Tahun</p>
+      </div>
+      <div class="p-4 bg-pink-100 rounded-xl shadow">
+        <p class="text-2xl font-bold text-pink-600" id="months">0</p>
+        <p class="text-gray-600">Bulan</p>
+      </div>
+      <div class="p-4 bg-red-100 rounded-xl shadow">
+        <p class="text-2xl font-bold text-red-600" id="weeks">0</p>
+        <p class="text-gray-600">Minggu</p>
+      </div>
+      <div class="p-4 bg-rose-50 rounded-xl shadow">
+        <p class="text-2xl font-bold text-rose-500" id="days">0</p>
+        <p class="text-gray-600">Hari</p>
+      </div>
+    </div>
+
+    <p class="text-xl text-gray-700 font-medium italic">
+      Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa ❤️
+    </p>
+  </div>
+
+  <script>
+    function updateLoveCounter() {
+      const startDate = new Date("2025-04-28");
+      const today = new Date();
+      const diffTime = today - startDate;
+
+      if (diffTime < 0) {
+        document.getElementById("counter").innerHTML =
+          "<p class='text-rose-600 font-semibold text-lg'>Tanggal jadian belum tiba 🥰</p>";
+        return;
+      }
+
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const diffWeeks = Math.floor(diffDays / 7);
+
+      let years = today.getFullYear() - startDate.getFullYear();
+      let months = today.getMonth() - startDate.getMonth();
+      let days = today.getDate() - startDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("years").textContent = years;
+      document.getElementById("months").textContent = months;
+      document.getElementById("weeks").textContent = diffWeeks;
+      document.getElementById("days").textContent = diffDays;
+    }
+
+    updateLoveCounter();
+    setInterval(updateLoveCounter, 1000 * 60 * 60); // update tiap jam
+  </script>
+</body>
+</html>
