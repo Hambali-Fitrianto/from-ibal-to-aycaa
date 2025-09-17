@@ -3,15 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dari Ibal untuk Aycaa 💖</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Animasi floating hearts */
-    .heart {<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dari Ibal untuk Aycaa 💙</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -111,113 +102,6 @@
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 3 + Math.random() * 5 + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
-    }
-    setInterval(createHeart, 500);
-  </script>
-</body>
-</html>
-
-      position: fixed;
-      top: -2rem;
-      font-size: 1.5rem;
-      color: #38bdf8; /* biru */
-      animation: fall linear forwards;
-      z-index: 10;
-      opacity: 0.8;
-    }
-    @keyframes fall {
-      from { transform: translateY(-2rem) rotate(0deg); }
-      to { transform: translateY(110vh) rotate(360deg); }
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300 min-h-screen flex items-center justify-center relative overflow-hidden">
-  <div class="text-center max-w-2xl p-6 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl animate-fadeIn">
-    <h1 class="text-4xl font-bold text-sky-700 mb-4 animate-bounce">
-      💙 Dari Ibal untuk Aycaa 💙
-    </h1>
-    <p class="text-lg text-gray-700 mb-6">
-      Aku ingin selalu menghitung setiap detik bersamamu, sejak kita jadian 💕 <br>
-      <span class="font-semibold text-sky-600">28 April 2025</span> sampai hari ini.
-    </p>
-
-    <!-- Counter -->
-    <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <div class="p-4 bg-sky-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-sky-700" id="years">0</p>
-        <p class="text-gray-600">Tahun</p>
-      </div>
-      <div class="p-4 bg-blue-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-blue-700" id="months">0</p>
-        <p class="text-gray-600">Bulan</p>
-      </div>
-      <div class="p-4 bg-cyan-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-cyan-700" id="weeks">0</p>
-        <p class="text-gray-600">Minggu</p>
-      </div>
-      <div class="p-4 bg-indigo-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-indigo-700" id="days">0</p>
-        <p class="text-gray-600">Hari</p>
-      </div>
-    </div>
-
-    <p class="text-xl text-gray-700 font-medium italic animate-pulse">
-      Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙
-    </p>
-  </div>
-
-  <script>
-    // === Hitung waktu jadian ===
-    function updateLoveCounter() {
-      const startDate = new Date("2025-04-28");
-      const today = new Date();
-      const diffTime = today - startDate;
-
-      if (diffTime < 0) {
-        document.getElementById("counter").innerHTML =
-          "<p class='text-sky-700 font-semibold text-lg'>Tanggal jadian belum tiba 🥰</p>";
-        return;
-      }
-
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      const diffWeeks = Math.floor(diffDays / 7);
-
-      let years = today.getFullYear() - startDate.getFullYear();
-      let months = today.getMonth() - startDate.getMonth();
-      let days = today.getDate() - startDate.getDate();
-
-      if (days < 0) {
-        months--;
-        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-        days += prevMonth.getDate();
-      }
-
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      document.getElementById("years").textContent = years;
-      document.getElementById("months").textContent = months;
-      document.getElementById("weeks").textContent = diffWeeks;
-      document.getElementById("days").textContent = diffDays;
-    }
-
-    updateLoveCounter();
-    setInterval(updateLoveCounter, 1000 * 60 * 60); // update tiap jam
-
-    // === Animasi hearts jatuh ===
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💙";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = 3 + Math.random() * 5 + "s";
       document.body.appendChild(heart);
