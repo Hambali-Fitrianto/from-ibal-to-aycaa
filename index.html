@@ -32,7 +32,7 @@
       <span class="font-semibold text-sky-600">28 April 2025</span> sampai hari ini.
     </p>
 
-    <!-- Counter -->
+    <!-- Counter Tahun-Bulan-Minggu-Hari -->
     <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
       <div class="p-4 bg-sky-100 rounded-xl shadow hover:scale-105 transition-transform">
         <p class="text-2xl font-bold text-sky-700" id="years">0</p>
@@ -52,17 +52,34 @@
       </div>
     </div>
 
+    <!-- Counter Jam-Menit-Detik -->
+    <div id="time-counter" class="grid grid-cols-3 gap-4 mb-6">
+      <div class="p-4 bg-purple-100 rounded-xl shadow hover:scale-105 transition-transform">
+        <p class="text-2xl font-bold text-purple-700" id="hours">0</p>
+        <p class="text-gray-600">Jam</p>
+      </div>
+      <div class="p-4 bg-pink-100 rounded-xl shadow hover:scale-105 transition-transform">
+        <p class="text-2xl font-bold text-pink-700" id="minutes">0</p>
+        <p class="text-gray-600">Menit</p>
+      </div>
+      <div class="p-4 bg-red-100 rounded-xl shadow hover:scale-105 transition-transform">
+        <p class="text-2xl font-bold text-red-700" id="seconds">0</p>
+        <p class="text-gray-600">Detik</p>
+      </div>
+    </div>
+
     <p class="text-xl text-gray-700 font-medium italic animate-pulse">
       Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙
     </p>
   </div>
 
   <script>
+    const startDate = new Date("2025-04-28T00:00:00");
+
     // === Hitung waktu jadian ===
     function updateLoveCounter() {
-      const startDate = new Date("2025-04-28");
-      const today = new Date();
-      const diffTime = today - startDate;
+      const now = new Date();
+      const diffTime = now - startDate;
 
       if (diffTime < 0) {
         document.getElementById("counter").innerHTML =
@@ -70,16 +87,17 @@
         return;
       }
 
+      // --- Tahun, Bulan, Hari, Minggu ---
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       const diffWeeks = Math.floor(diffDays / 7);
 
-      let years = today.getFullYear() - startDate.getFullYear();
-      let months = today.getMonth() - startDate.getMonth();
-      let days = today.getDate() - startDate.getDate();
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
 
       if (days < 0) {
         months--;
-        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
         days += prevMonth.getDate();
       }
 
@@ -92,10 +110,20 @@
       document.getElementById("months").textContent = months;
       document.getElementById("weeks").textContent = diffWeeks;
       document.getElementById("days").textContent = diffDays;
+
+      // --- Jam, Menit, Detik (realtime) ---
+      let diffSeconds = Math.floor(diffTime / 1000);
+      let hours = Math.floor(diffSeconds / 3600) % 24;
+      let minutes = Math.floor(diffSeconds / 60) % 60;
+      let seconds = diffSeconds % 60;
+
+      document.getElementById("hours").textContent = hours.toString().padStart(2,"0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2,"0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2,"0");
     }
 
     updateLoveCounter();
-    setInterval(updateLoveCounter, 1000 * 60 * 60); // update tiap jam
+    setInterval(updateLoveCounter, 1000); // update tiap detik
 
     // === Animasi hearts jatuh ===
     function createHeart() {
