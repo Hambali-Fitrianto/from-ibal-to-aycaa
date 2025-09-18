@@ -20,14 +20,26 @@
       from { transform: translateY(-2rem) rotate(0deg); }
       to { transform: translateY(110vh) rotate(360deg); }
     }
+
+    /* kecilkan teks pada layar kecil agar rapi */
+    @media (max-width: 420px) {
+      h1 { font-size: 1.8rem; }
+      .text-lg { font-size: 0.95rem; }
+    }
+
+    /* efek gentle card hover */
+    .card-hover:hover {
+      transform: translateY(-6px) scale(1.01);
+      transition: transform 250ms ease;
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300 min-h-screen flex items-center justify-center relative overflow-hidden">
-  <div class="text-center max-w-2xl p-6 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl">
+<body class="bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300 min-h-screen flex items-center justify-center relative overflow-hidden py-12">
+  <div class="text-center max-w-2xl p-6 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl card-hover">
     <h1 class="text-4xl font-bold text-sky-700 mb-4">
       💙 Dari Ibal untuk Aycaa 💙
     </h1>
-    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+    <p class="text-lg text-gray-700 mb-4 leading-relaxed">
       Aku ingin selalu menghitung setiap detik bersamamu, sejak kita jadian 💕 <br>
       <span class="font-semibold text-sky-600">28 April 2025</span> sampai hari ini.
     </p>
@@ -69,7 +81,7 @@
     </div>
 
     <!-- Tambahan kata-kata romantis -->
-    <div class="space-y-4 text-gray-700 mb-6">
+    <div class="space-y-4 text-gray-700 mb-6 text-left">
       <p class="italic">
         Bersamamu, aku belajar bahwa cinta bukan sekadar kata, melainkan doa yang terus hidup dalam setiap tarikan napas.
       </p>
@@ -84,6 +96,23 @@
       </p>
       <p class="italic">
         Hidup mungkin penuh rahasia, tapi satu hal yang pasti: cintaku padamu tak akan pernah pudar, bahkan hingga detik terakhir aku ada.
+      </p>
+
+      <!-- Paragraf baru sesuai permintaan: belum pernah ketemu, harapan bertemu, main bareng, jalan-jalan, saling melengkapi -->
+      <p class="italic">
+        Kita belum pernah bertemu, dan mungkin itu membuat rindu kita tumbuh jadi sesuatu yang lebih dalam. Aku selalu berharap hari di mana aku bisa menatap matamu langsung, menggenggam tanganmu, dan mengatakan "akhirnya" tanpa ada jarak lagi.
+      </p>
+      <p class="italic">
+        Cerita apapun yang kita bawa — tawa, luka, canda, atau kebisuan — aku ingin kita rangkai jadi kisah yang saling melengkapi. Kamu melengkapi bagian yang hilang dalam diriku, dan aku ingin menjadi bahu untukmu saat dunia terasa berat.
+      </p>
+      <p class="italic">
+        Bayanganku tentang kita: main bareng sampai lupa waktu, jalan-jalan sambil berbagi playlist, nonton film sampai tertidur berdua, masak bareng sampai dapur berantakan, dan merayakan hal-hal kecil dengan pelukan hangat. Itu semua terlihat sederhana, tapi untukku itu adalah surga.
+      </p>
+      <p class="italic">
+        Semoga kita bisa segera bertemu, membuat kenangan nyata yang bisa kita sentuh dan simpan. Sampai saat itu tiba, aku akan merawat rindu ini dengan setia — karena setiap langkah yang kita ambil menuju pertemuan adalah janji yang aku pegang erat.
+      </p>
+      <p class="italic font-semibold text-sky-700">
+        Aku mencintaimu, Aycaa. Sampai jumpa di pelukan pertama kita. 💙
       </p>
     </div>
 
