@@ -2,133 +2,163 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#bae6fd">
   <title>Dari Ibal untuk Aycaa 💙</title>
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* Animasi floating hearts */
+    :root{
+      /* Fluid typography & spacing */
+      --fs-base: clamp(16px, 2.6vw, 18px);
+      --radius: 1.25rem;
+    }
+    html, body { font-size: var(--fs-base); }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+    /* Safe area (iPhone notch) padding */
+    .safe-area {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+      padding-top: max(1rem, env(safe-area-inset-top));
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+
+    /* Floating hearts */
     .heart {
       position: fixed;
       top: -2rem;
-      font-size: 1.5rem;
-      color: #38bdf8; /* biru */
+      font-size: clamp(1.1rem, 4vw, 1.8rem);
+      color: #38bdf8; /* sky-400 */
       animation: fall linear forwards;
       z-index: 10;
-      opacity: 0.8;
+      opacity: .85;
+      filter: drop-shadow(0 2px 4px rgba(2,132,199,.25));
+      will-change: transform;
+      user-select: none;
+      pointer-events: none;
     }
     @keyframes fall {
       from { transform: translateY(-2rem) rotate(0deg); }
-      to { transform: translateY(110vh) rotate(360deg); }
+      to   { transform: translateY(110vh) rotate(360deg); }
     }
 
-    @media (max-width: 420px) {
-      h1 { font-size: 1.8rem; }
-      .text-lg { font-size: 0.95rem; }
+    /* Better scaling on tiny screens */
+    @media (max-width: 380px){
+      h1 { font-size: clamp(1.4rem, 8vw, 1.9rem); }
+      .lead { font-size: .95rem; }
+    }
+
+    /* Hover scale only on devices that actually have hover (hindari “jump” di HP) */
+    @media (hover: hover){
+      .hvr\:scale:hover { transform: scale(1.04); }
+    }
+
+    /* Respect “Reduce Motion” setting */
+    @media (prefers-reduced-motion: reduce){
+      .heart { animation: none; display: none; }
+      .animate-pulse { animation: none !important; }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300 min-h-screen flex items-center justify-center relative overflow-hidden py-12">
-  <div class="text-center max-w-3xl p-6 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl">
-    <h1 class="text-4xl font-bold text-sky-700 mb-4">
-      💙 Dari Ibal untuk Aycaa 💙
-    </h1>
-    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-      Aku ingin selalu menghitung setiap detik bersamamu, sejak kita jadian 💕 <br>
-      <span class="font-semibold text-sky-600">28 April 2025</span> sampai hari ini.
-    </p>
 
-    <!-- Counter Tahun-Bulan-Minggu-Hari -->
-    <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <div class="p-4 bg-sky-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-sky-700" id="years">0</p>
-        <p class="text-gray-600">Tahun</p>
-      </div>
-      <div class="p-4 bg-blue-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-blue-700" id="months">0</p>
-        <p class="text-gray-600">Bulan</p>
-      </div>
-      <div class="p-4 bg-cyan-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-cyan-700" id="weeks">0</p>
-        <p class="text-gray-600">Minggu</p>
-      </div>
-      <div class="p-4 bg-indigo-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-indigo-700" id="days">0</p>
-        <p class="text-gray-600">Hari</p>
-      </div>
-    </div>
+<body class="bg-gradient-to-br from-blue-100 via-sky-200 to-blue-300 min-h-dvh flex items-center justify-center relative overflow-hidden">
+  <main class="safe-area w-full">
+    <section class="mx-auto max-w-screen-md">
+      <div class="text-center p-5 sm:p-8 bg-white/70 backdrop-blur-lg rounded-[var(--radius)] shadow-2xl ring-1 ring-white/40">
+        <h1 class="font-bold text-sky-700 mb-3 leading-tight" style="font-size: clamp(1.8rem, 4.8vw, 2.6rem);">
+          💙 Dari Ibal untuk Aycaa 💙
+        </h1>
 
-    <!-- Counter Jam-Menit-Detik -->
-    <div id="time-counter" class="grid grid-cols-3 gap-4 mb-8">
-      <div class="p-4 bg-purple-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-purple-700" id="hours">0</p>
-        <p class="text-gray-600">Jam</p>
-      </div>
-      <div class="p-4 bg-pink-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-pink-700" id="minutes">0</p>
-        <p class="text-gray-600">Menit</p>
-      </div>
-      <div class="p-4 bg-red-100 rounded-xl shadow hover:scale-105 transition-transform">
-        <p class="text-2xl font-bold text-red-700" id="seconds">0</p>
-        <p class="text-gray-600">Detik</p>
-      </div>
-    </div>
+        <p class="lead text-gray-700 mb-6 leading-relaxed text-balance">
+          Aku ingin selalu menghitung setiap detik bersamamu, sejak kita jadian 💕 <br>
+          <span class="font-semibold text-sky-600">28 April 2025</span> sampai hari ini.
+        </p>
 
-    <!-- Kata-kata romantis dipisahkan ke dalam kotak -->
-    <div class="grid gap-4 text-gray-700 mb-6">
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Bersamamu, aku belajar bahwa cinta bukan sekadar kata, melainkan doa yang terus hidup dalam setiap tarikan napas.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Setiap senyummu adalah alasan aku bersyukur, setiap tatapanmu adalah rumah, dan setiap genggamanmu adalah janji abadi yang tak ingin kulepaskan.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Aku tak mencari cinta yang sempurna, aku hanya ingin cinta yang tulus — dan itu aku temukan dalam dirimu, Aycaa 💙
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Jika waktu bisa berhenti, aku ingin ia berhenti di setiap momen ketika aku menatapmu. Karena di sanalah aku merasa dunia begitu indah.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Hidup mungkin penuh rahasia, tapi satu hal yang pasti: cintaku padamu tak akan pernah pudar, bahkan hingga detik terakhir aku ada.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Kita belum pernah bertemu, dan mungkin itu membuat rindu kita tumbuh jadi sesuatu yang lebih dalam. Aku selalu berharap hari di mana aku bisa menatap matamu langsung, menggenggam tanganmu, dan mengatakan "akhirnya" tanpa ada jarak lagi.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Cerita apapun yang kita bawa — tawa, luka, canda, atau kebisuan — aku ingin kita rangkai jadi kisah yang saling melengkapi. Kamu melengkapi bagian yang hilang dalam diriku, dan aku ingin menjadi bahu untukmu saat dunia terasa berat.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Bayanganku tentang kita: main bareng sampai lupa waktu, jalan-jalan sambil berbagi playlist, nonton film sampai tertidur berdua, masak bareng sampai dapur berantakan, dan merayakan hal-hal kecil dengan pelukan hangat. Itu semua terlihat sederhana, tapi untukku itu adalah surga.
-      </div>
-      <div class="p-4 bg-white rounded-xl shadow text-left italic">
-        Semoga kita bisa segera bertemu, membuat kenangan nyata yang bisa kita sentuh dan simpan. Sampai saat itu tiba, aku akan merawat rindu ini dengan setia — karena setiap langkah yang kita ambil menuju pertemuan adalah janji yang aku pegang erat.
-      </div>
-      <div class="p-4 bg-sky-100 rounded-xl shadow text-left italic font-semibold text-sky-700">
-        Aku mencintaimu, Aycaa. Sampai jumpa di pelukan pertama kita. 💙
-      </div>
-    </div>
+        <!-- Counter Tahun-Bulan-Minggu-Hari -->
+        <div id="counter" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-5" aria-live="polite">
+          <div class="p-4 bg-sky-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-sky-700" id="years">0</p>
+            <p class="text-gray-600 text-sm sm:text-base">Tahun</p>
+          </div>
+          <div class="p-4 bg-blue-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-blue-700" id="months">0</p>
+            <p class="text-gray-600 text-sm sm:text-base">Bulan</p>
+          </div>
+          <div class="p-4 bg-cyan-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-cyan-700" id="weeks">0</p>
+            <p class="text-gray-600 text-sm sm:text-base">Minggu</p>
+          </div>
+          <div class="p-4 bg-indigo-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-indigo-700" id="days">0</p>
+            <p class="text-gray-600 text-sm sm:text-base">Hari</p>
+          </div>
+        </div>
 
-    <p class="text-xl text-gray-700 font-medium italic animate-pulse">
-      Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙
-    </p>
-  </div>
+        <!-- Counter Jam-Menit-Detik -->
+        <div id="time-counter" class="grid grid-cols-3 gap-3 sm:gap-4 mb-7" aria-live="polite">
+          <div class="p-4 bg-purple-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-purple-700" id="hours">00</p>
+            <p class="text-gray-600 text-sm sm:text-base">Jam</p>
+          </div>
+          <div class="p-4 bg-pink-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-pink-700" id="minutes">00</p>
+            <p class="text-gray-600 text-sm sm:text-base">Menit</p>
+          </div>
+          <div class="p-4 bg-red-100 rounded-xl shadow hvr:scale transition-transform">
+            <p class="text-2xl sm:text-3xl font-bold text-red-700" id="seconds">00</p>
+            <p class="text-gray-600 text-sm sm:text-base">Detik</p>
+          </div>
+        </div>
+
+        <!-- Kata-kata romantis -->
+        <div class="grid gap-3 sm:gap-4 text-gray-700 mb-6 text-pretty">
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Bersamamu, aku belajar bahwa cinta bukan sekadar kata, melainkan doa yang terus hidup dalam setiap tarikan napas.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Setiap senyummu adalah alasan aku bersyukur, setiap tatapanmu adalah rumah, dan setiap genggamanmu adalah janji abadi yang tak ingin kulepaskan.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Aku tak mencari cinta yang sempurna, aku hanya ingin cinta yang tulus — dan itu aku temukan dalam dirimu, Aycaa 💙</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Jika waktu bisa berhenti, aku ingin ia berhenti di setiap momen ketika aku menatapmu. Karena di sanalah aku merasa dunia begitu indah.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Hidup mungkin penuh rahasia, tapi satu hal yang pasti: cintaku padamu tak akan pernah pudar, bahkan hingga detik terakhir aku ada.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Kita belum pernah bertemu, dan mungkin itu membuat rindu kita tumbuh jadi sesuatu yang lebih dalam. Aku selalu berharap hari di mana aku bisa menatap matamu langsung, menggenggam tanganmu, dan mengatakan "akhirnya" tanpa ada jarak lagi.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Cerita apapun yang kita bawa — tawa, luka, canda, atau kebisuan — aku ingin kita rangkai jadi kisah yang saling melengkapi. Kamu melengkapi bagian yang hilang dalam diriku, dan aku ingin menjadi bahu untukmu saat dunia terasa berat.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Bayanganku tentang kita: main bareng sampai lupa waktu, jalan-jalan sambil berbagi playlist, nonton film sampai tertidur berdua, masak bareng sampai dapur berantakan, dan merayakan hal-hal kecil dengan pelukan hangat. Itu semua terlihat sederhana, tapi untukku itu adalah surga.</div>
+          <div class="p-4 bg-white rounded-xl shadow text-left italic">Semoga kita bisa segera bertemu, membuat kenangan nyata yang bisa kita sentuh dan simpan. Sampai saat itu tiba, aku akan merawat rindu ini dengan setia — karena setiap langkah yang kita ambil menuju pertemuan adalah janji yang aku pegang erat.</div>
+          <div class="p-4 bg-sky-100 rounded-xl shadow text-left italic font-semibold text-sky-700">Aku mencintaimu, Aycaa. Sampai jumpa di pelukan pertama kita. 💙</div>
+        </div>
+
+        <p class="text-lg sm:text-xl text-gray-700 font-medium italic animate-pulse">
+          Setiap hari bersamamu adalah anugerah terindah bagiku, Aycaa 💙
+        </p>
+      </div>
+    </section>
+  </main>
 
   <script>
-    const startDate = new Date("2025-04-28T00:00:00");
+    // --- Tanggal jadian: konstruksi aman untuk semua browser (hindari parsing string yang kadang bikin beda zona waktu)
+    // 2025-04-28 00:00:00 lokal
+    const startDate = new Date(2025, 3, 28, 0, 0, 0); // bulan 0-based: 3 = April
+
+    // Utility
+    const pad2 = (n) => n.toString().padStart(2, "0");
 
     // === Hitung waktu jadian ===
     function updateLoveCounter() {
       const now = new Date();
-      const diffTime = now - startDate;
+      const diffTime = now.getTime() - startDate.getTime();
 
       if (diffTime < 0) {
-        document.getElementById("counter").innerHTML =
-          "<p class='text-sky-700 font-semibold text-lg'>Tanggal jadian belum tiba 🥰</p>";
+        const counter = document.getElementById("counter");
+        if (counter) {
+          counter.innerHTML = "<p class='text-sky-700 font-semibold text-base sm:text-lg'>Tanggal jadian belum tiba 🥰</p>";
+        }
         return;
       }
 
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       const diffWeeks = Math.floor(diffDays / 7);
 
+      // Tahun/Bulan/Hari versi kalender (dipinjam/diutang hari & bulan supaya akurat)
       let years = now.getFullYear() - startDate.getFullYear();
       let months = now.getMonth() - startDate.getMonth();
       let days = now.getDate() - startDate.getDate();
@@ -138,7 +168,6 @@
         const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
         days += prevMonth.getDate();
       }
-
       if (months < 0) {
         years--;
         months += 12;
@@ -149,32 +178,71 @@
       document.getElementById("weeks").textContent = diffWeeks;
       document.getElementById("days").textContent = diffDays;
 
+      // Jam/menit/detik berjalan
       let diffSeconds = Math.floor(diffTime / 1000);
       let hours = Math.floor(diffSeconds / 3600) % 24;
       let minutes = Math.floor(diffSeconds / 60) % 60;
       let seconds = diffSeconds % 60;
 
-      document.getElementById("hours").textContent = hours.toString().padStart(2,"0");
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2,"0");
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2,"0");
+      document.getElementById("hours").textContent = pad2(hours);
+      document.getElementById("minutes").textContent = pad2(minutes);
+      document.getElementById("seconds").textContent = pad2(seconds);
     }
 
-    updateLoveCounter();
-    setInterval(updateLoveCounter, 1000);
+    // ==== Animasi hati ====
+    let heartTimer = null;
+    let heartCount = 0;
+    const HEART_MAX = 20; // batasi biar hemat baterai di hp lama
 
     function createHeart() {
+      if (document.hidden) return;
+      if (heartCount >= HEART_MAX) return;
+
       const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💙";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+      heart.className = "heart";
+      heart.textContent = "💙";
+      heart.style.left = (Math.random() * 100) + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+      heart.style.transition = "opacity .3s ease";
+
       document.body.appendChild(heart);
+      heartCount++;
 
       setTimeout(() => {
+        heart.style.opacity = "0";
         heart.remove();
+        heartCount--;
       }, 8000);
     }
-    setInterval(createHeart, 500);
+
+    function startHearts() {
+      // Frekuensi adaptif: perangkat lemah -> lebih jarang
+      const hasHover = matchMedia("(hover: hover)").matches;
+      const cores = navigator.hardwareConcurrency || 2;
+      const interval = cores >= 6 && hasHover ? 450 : 700;
+      if (!heartTimer) heartTimer = setInterval(createHeart, interval);
+    }
+    function stopHearts() {
+      clearInterval(heartTimer);
+      heartTimer = null;
+    }
+
+    // ==== Inisialisasi ====
+    updateLoveCounter();
+    const counterTimer = setInterval(updateLoveCounter, 1000);
+
+    // Pause saat tab tidak aktif (hemat baterai)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopHearts();
+      } else {
+        startHearts();
+      }
+    });
+
+    // Mulai animasi (kecuali user minta reduce motion)
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion) startHearts();
   </script>
 </body>
 </html>
